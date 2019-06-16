@@ -6,17 +6,17 @@ import (
 	"os"
 )
 
+//main entry point of the program
 func main() {
 	//Get command line arguments
-	argsWithoutProg := os.Args[1:]
+	argsWithoutProgName := os.Args[1:]
 
 	//Check if a file name is passed
-	if len(argsWithoutProg) == 0 {
-		//Call Intractive shell here
+	if len(argsWithoutProgName) == 0 {
+		//Call CLI here...
 		cli.CreateCli().Execute()
 	} else {
-		//Read input from file://
+		//Read input from file://...
 		fileinput.CreateFileInput(os.Args[1]).Execute()
-
 	}
 }
