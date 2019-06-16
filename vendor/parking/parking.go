@@ -3,6 +3,8 @@ package parking
 import (
 	"fmt"
 	"slot"
+	"strconv"
+	"strings"
 	"vehicle"
 )
 
@@ -24,13 +26,15 @@ func (p *Parking) init() {
 	for i := range p.slots {
 		p.slots[i] = slot.CreateSlot(i)
 	}
+
+	fmt.Println("Created a parking lot with", p.capacity, "slots")
 }
 
 func (p *Parking) AddVehicle(number string, color string) {
-	s := p.FindEmptySlot()
+	n, s := p.FindEmptySlot()
 
 	if s == nil {
-		fmt.Println("All Slots Are Full")
+		fmt.Println("Sorry, parking lot is full")
 		return
 	}
 
@@ -39,21 +43,7 @@ func (p *Parking) AddVehicle(number string, color string) {
 
 	//Assign vehicle to the slot
 	s.AssignVehicle(v)
-}
-
-func (p *Parking) RemoveVehicle(number string, color string) {
-	s := p.FindEmptySlot()
-
-	if s == nil {
-		fmt.Println("All Slots Are Full")
-		return
-	}
-
-	//Create a New Vehicle
-	v := vehicle.Create(number, color)
-
-	//Assign vehicle to the slot
-	s.AssignVehicle(v)
+	fmt.Println("Allocated slot number:", n)
 }
 
 func (p *Parking) RemoveVehicleAtSlot(slotNumber int) {
@@ -62,22 +52,82 @@ func (p *Parking) RemoveVehicleAtSlot(slotNumber int) {
 	}
 
 	p.slots[slotNumber].RemoveVehicle()
+
+	fmt.Println("Slot number", slotNumber, "is free")
 }
 
 func (p *Parking) ParkingStatus() {
-	fmt.Println("Slot No.         Registration           Color")
+	output := []string{fmt.Sprintf("%-10s%-20s%-10s",
+		"Slot No.",
+		"Registration No",
+		"Colour",
+	)}
 	for _, s := range p.slots {
 		if !s.IsEmpty() {
-			fmt.Println(s.GetSlotNumber(), "       ", s.GetRegistrationNumber(), "      ", s.GetColor())
+			output = append(output, fmt.Sprintf("%-10v%-20s%-10s",
+				s.GetSlotNumber(),
+				s.GetRegistrationNumber(),
+				s.GetColor(),
+			))
 		}
 	}
+	s := strings.Join(output, "\n")
+	fmt.Println(s)
 }
 
-func (p *Parking) FindEmptySlot() *slot.Slot {
-	for _, slot := range p.slots {
+func (p *Parking) FindEmptySlot() (int, *slot.Slot) {
+	for n, slot := range p.slots {
 		if slot.IsEmpty() == true {
-			return slot
+			return n + 1, slot
 		}
 	}
-	return nil
+	return 0, nil
+}
+
+func (p *Parking) GetRegNoOfCarsByColor(color string) []string {
+	regNos := []string{}
+	for _, slot := range p.slots {
+		if (!slot.IsEmpty()) && (slot.GetColor() == color) {
+			regNos = append(regNos, slot.GetRegistrationNumber())
+		}
+	}
+
+	if len(regNos) == 0 {
+		regNos = append(regNos, "Not found")
+	}
+
+	fmt.Println(strings.Join(regNos, ", "))
+	return regNos
+}
+
+func (p *Parking) GetSlotNosOfCarsByColor(color string) []string {
+	slotNos := []string{}
+	for n, slot := range p.slots {
+		if (!slot.IsEmpty()) && (slot.GetColor() == color) {
+			slotNos = append(slotNos, strconv.Itoa(n))
+		}
+	}
+
+	if len(slotNos) == 0 {
+		slotNos = append(slotNos, "Not found")
+	}
+
+	fmt.Println(strings.Join(slotNos, ", "))
+	return slotNos
+}
+
+func (p *Parking) GetSlotNosOfCarsByRegNo(regNo string) []string {
+	slotNos := []string{}
+	for n, slot := range p.slots {
+		if (!slot.IsEmpty()) && (slot.GetRegistrationNumber() == regNo) {
+			slotNos = append(slotNos, strconv.Itoa(n))
+		}
+	}
+
+	if len(slotNos) == 0 {
+		slotNos = append(slotNos, "Not found")
+	}
+
+	fmt.Println(strings.Join(slotNos, ", "))
+	return slotNos
 }
