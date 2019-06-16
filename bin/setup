@@ -9,5 +9,6 @@
 # Install dependencies
 go version
 
+export GOPATH=$(pwd)
 # Build/Compile Code base
 go build
