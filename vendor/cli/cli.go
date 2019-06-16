@@ -22,7 +22,7 @@ func (c *Cli) Init() {
 }
 
 func (c *Cli) ShowPrompt() {
-	fmt.Print(">> ")
+	fmt.Print("$ ")
 }
 
 func (c *Cli) Execute() {
@@ -31,6 +31,11 @@ func (c *Cli) Execute() {
 	for {
 		cmdInput, _ := reader.ReadString('\n')
 		cmdInput = strings.TrimRight(cmdInput, "\n")
+
+		if cmdInput == "exit" {
+			return
+		}
+
 		if "" != cmdInput {
 			out, err := c.cmdHandler.Run(cmdInput)
 			c.cmdHandler.processOutput(out, err)

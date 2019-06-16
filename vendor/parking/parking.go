@@ -35,7 +35,7 @@ func (p *Parking) init() {
 	p.slots = make([]*slot.Slot, uint64(p.capacity))
 
 	for i := range p.slots {
-		p.slots[i] = slot.CreateSlot(i)
+		p.slots[i] = slot.CreateSlot(i + 1)
 	}
 
 	fmt.Println("Created a parking lot with", p.capacity, "slots")
@@ -62,7 +62,7 @@ func (p *Parking) RemoveVehicleAtSlot(slotNumber int) {
 		fmt.Println("Invalid Slot Number")
 	}
 
-	p.slots[slotNumber].RemoveVehicle()
+	p.slots[slotNumber-1].RemoveVehicle()
 
 	fmt.Println("Slot number", slotNumber, "is free")
 }
@@ -87,9 +87,9 @@ func (p *Parking) ParkingStatus() {
 }
 
 func (p *Parking) FindEmptySlot() (int, *slot.Slot) {
-	for n, slot := range p.slots {
+	for _, slot := range p.slots {
 		if slot.IsEmpty() == true {
-			return n + 1, slot
+			return slot.GetSlotNumber(), slot
 		}
 	}
 	return 0, nil
@@ -113,9 +113,9 @@ func (p *Parking) GetRegNoOfCarsByColor(color string) []string {
 
 func (p *Parking) GetSlotNosOfCarsByColor(color string) []string {
 	slotNos := []string{}
-	for n, slot := range p.slots {
+	for _, slot := range p.slots {
 		if (!slot.IsEmpty()) && (slot.GetColor() == color) {
-			slotNos = append(slotNos, strconv.Itoa(n))
+			slotNos = append(slotNos, strconv.Itoa(slot.GetSlotNumber()))
 		}
 	}
 
@@ -129,9 +129,9 @@ func (p *Parking) GetSlotNosOfCarsByColor(color string) []string {
 
 func (p *Parking) GetSlotNosOfCarsByRegNo(regNo string) []string {
 	slotNos := []string{}
-	for n, slot := range p.slots {
+	for _, slot := range p.slots {
 		if (!slot.IsEmpty()) && (slot.GetRegistrationNumber() == regNo) {
-			slotNos = append(slotNos, strconv.Itoa(n))
+			slotNos = append(slotNos, strconv.Itoa(slot.GetSlotNumber()))
 		}
 	}
 
