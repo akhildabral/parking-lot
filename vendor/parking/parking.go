@@ -8,15 +8,26 @@ import (
 	"vehicle"
 )
 
+var instance *Parking = nil
+
 type Parking struct {
 	capacity int
 	slots    []*slot.Slot
 }
 
 func CreateParking(cap int) *Parking {
-	p := &Parking{capacity: cap, slots: nil}
-	p.init()
-	return p
+	instance = &Parking{capacity: cap, slots: nil}
+	instance.init()
+
+	return instance
+}
+
+func GetInstance() *Parking {
+	if instance == nil {
+		fmt.Println("Parking not found")
+	}
+
+	return instance
 }
 
 func (p *Parking) init() {
@@ -30,7 +41,7 @@ func (p *Parking) init() {
 	fmt.Println("Created a parking lot with", p.capacity, "slots")
 }
 
-func (p *Parking) AddVehicle(number string, color string) {
+func (p *Parking) ParkVehicle(number string, color string) {
 	n, s := p.FindEmptySlot()
 
 	if s == nil {
