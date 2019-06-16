@@ -8,7 +8,7 @@ Language : GoLang
 Version : go1.12.5
 
 
-### Thoughts on GoLang
+### Thoughts on GoLang :
 This is my first experience with Golang and have tried to learn as much I can and incorporate all knowledge I could gather over night for this project. 
 
 Go is a such a naive language still packed with features that are so vital...

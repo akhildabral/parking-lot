@@ -50,8 +50,7 @@ func (c *Cli) Execute() {
 		//Is Cmd is not empty, Process Command, Else show help
 		if "" != cmdInput {
 			//Pass command to the handler
-			out, err := c.cmdHandler.Run(cmdInput)
-			c.cmdHandler.processOutput(out, err)
+			c.cmdHandler.Run(cmdInput)
 		} else {
 			//Show Help Message
 			c.cmdHandler.commands["help"].Run(nil)
