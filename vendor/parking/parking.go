@@ -68,14 +68,14 @@ func (p *Parking) RemoveVehicleAtSlot(slotNumber int) {
 }
 
 func (p *Parking) ParkingStatus() {
-	output := []string{fmt.Sprintf("%-10s%-20s%-10s",
+	output := []string{fmt.Sprintf("%-12s%-19s%-10s",
 		"Slot No.",
 		"Registration No",
 		"Colour",
 	)}
 	for _, s := range p.slots {
 		if !s.IsEmpty() {
-			output = append(output, fmt.Sprintf("%-10v%-20s%-10s",
+			output = append(output, fmt.Sprintf("%-12v%-19s%-10s",
 				s.GetSlotNumber(),
 				s.GetRegistrationNumber(),
 				s.GetColor(),
