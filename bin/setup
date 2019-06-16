@@ -5,3 +5,9 @@
 #
 # After this is run, bin/parking_lot
 # should Just Work.
+
+# Install dependencies
+go version
+
+# Build/Compile Code base
+go build
