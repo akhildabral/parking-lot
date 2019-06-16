@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"vehicle"
+	"writer"
 )
 
 //Holds ParkingLot instance for later use
@@ -32,7 +33,7 @@ func CreateParking(cap int) *Parking {
 func GetInstance() *Parking {
 	//Check if instance is nil
 	if instance == nil {
-		fmt.Println("Parking not found")
+		writer.ShowMessage(writer.ParkingNotFound)
 	}
 
 	return instance
@@ -48,7 +49,8 @@ func (p *Parking) init() {
 		p.slots[i] = slot.CreateSlot(i + 1)
 	}
 
-	fmt.Println("Created a parking lot with", p.capacity, "slots")
+	writer.ShowMessage(writer.ParkingCreated, p.capacity)
+	//fmt.Println("Created a parking lot with", p.capacity, "slots")
 }
 
 //ParkVehicle - Add Vehicle to parking lot
@@ -58,7 +60,7 @@ func (p *Parking) ParkVehicle(number string, color string) {
 
 	// Check if empty slot found. If not show message
 	if s == nil {
-		fmt.Println("Sorry, parking lot is full")
+		writer.ShowMessage(writer.ParkingIsFull)
 		return
 	}
 
@@ -67,7 +69,7 @@ func (p *Parking) ParkVehicle(number string, color string) {
 
 	//Assign vehicle to the slot
 	s.AssignVehicle(v)
-	fmt.Println("Allocated slot number:", n)
+	writer.ShowMessage(writer.ParkingSlotAllocated, n)
 }
 
 //RemoveVehicleAtSlot - Removes vehicle at specific slot number
@@ -75,14 +77,14 @@ func (p *Parking) ParkVehicle(number string, color string) {
 func (p *Parking) RemoveVehicleAtSlot(slotNumber int) {
 	//Check if slot number is corrent
 	if slotNumber > p.capacity {
-		fmt.Println("Invalid Slot Number")
+		writer.ShowMessage(writer.ParkingInvalidSlotNumber)
 		return
 	}
 
 	//Remove vehicle at the spot
 	p.slots[slotNumber-1].RemoveVehicle()
 
-	fmt.Println("Slot number", slotNumber, "is free")
+	writer.ShowMessage(writer.ParkingSlotNumberIsFree, slotNumber)
 }
 
 //ParkingStatus - Prints current parking status
@@ -132,7 +134,7 @@ func (p *Parking) GetRegNoOfCarsByColor(color string) []string {
 
 	//Show message if nothing found
 	if len(regNos) == 0 {
-		regNos = append(regNos, "Not found")
+		regNos = append(regNos, writer.GetMessage(writer.NotFound))
 	}
 
 	fmt.Println(strings.Join(regNos, ", "))
@@ -151,7 +153,7 @@ func (p *Parking) GetSlotNosOfCarsByColor(color string) []string {
 	}
 
 	if len(slotNos) == 0 {
-		slotNos = append(slotNos, "Not found")
+		slotNos = append(slotNos, writer.GetMessage(writer.NotFound))
 	}
 
 	fmt.Println(strings.Join(slotNos, ", "))
@@ -170,7 +172,7 @@ func (p *Parking) GetSlotNosOfCarsByRegNo(regNo string) []string {
 	}
 
 	if len(slotNos) == 0 {
-		slotNos = append(slotNos, "Not found")
+		slotNos = append(slotNos, writer.GetMessage(writer.NotFound))
 	}
 
 	fmt.Println(strings.Join(slotNos, ", "))

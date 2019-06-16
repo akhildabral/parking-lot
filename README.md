@@ -123,5 +123,5 @@ parking_lot$ ./bin/run_functional_tests
 - [x] File Support
 - [x] Help for Commands
 - [x] Highly Modular Design
-- [ ] Internationalization
+- [x] Internationalization (Partial, WIP)
 
