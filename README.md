@@ -110,6 +110,7 @@ parking_lot$ ./bin/parking_lot <file_name>
 
 ## Test
 
+In constant learning and implementation ,I didn't get time to figure out how to write Tests in Golang. Testing is an important part of development life cycle. I'll catchup on this soon ...
 
 ``` 
 parking_lot$ ./bin/run_functional_tests
