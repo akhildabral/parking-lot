@@ -41,10 +41,8 @@ func (cmd *cmdPark) Validate(args []string) bool {
 	return false
 }
 
-func (cmd *cmdPark) ProcessInput() {
-
-}
 
 func (cmd *cmdPark) Help() {
-	fmt.Println("You Need SOme help!")
+	fmt.Println(`Help --> 
+park :		<registration no> <color> =>  (Park Car with Registration number and Color)`)
 }

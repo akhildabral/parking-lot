@@ -41,10 +41,7 @@ func (cmd *cmdStatus) Validate(args []string) bool {
 	return false
 }
 
-func (cmd *cmdStatus) ProcessInput() {
-
-}
-
 func (cmd *cmdStatus) Help() {
-	fmt.Println("You Need SOme help!")
+	fmt.Println(`Help --> 
+status :	=>   (Check Parking Status)`)
 }

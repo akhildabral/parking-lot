@@ -41,10 +41,7 @@ func (cmd *cmdSlotNoForCarsWithColor) Validate(args []string) bool {
 	return false
 }
 
-func (cmd *cmdSlotNoForCarsWithColor) ProcessInput() {
-
-}
-
 func (cmd *cmdSlotNoForCarsWithColor) Help() {
-	fmt.Println("You Need SOme help!")
+	fmt.Println(`Help --> 
+slot_numbers_for_cars_with_colour : <color>  =>  (Get Slot Number of all the cars with specific Color)`)
 }

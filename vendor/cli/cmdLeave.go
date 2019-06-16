@@ -43,10 +43,7 @@ func (cmd *cmdLeave) Validate(args []string) bool {
 	return false
 }
 
-func (cmd *cmdLeave) ProcessInput() {
-
-}
-
 func (cmd *cmdLeave) Help() {
-	fmt.Println("You Need SOme help!")
+	fmt.Println(`Help --> 
+leave  :	<slot number>  =>   (Remove Car from Parking lot at specific Slot number)`)
 }

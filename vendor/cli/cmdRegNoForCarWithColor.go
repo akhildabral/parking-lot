@@ -41,10 +41,7 @@ func (cmd *cmdRegNoForCarWithColor) Validate(args []string) bool {
 	return false
 }
 
-func (cmd *cmdRegNoForCarWithColor) ProcessInput() {
-
-}
-
 func (cmd *cmdRegNoForCarWithColor) Help() {
-	fmt.Println("You Need SOme help!")
+	fmt.Println(`Help --> 
+registration_numbers_for_cars_with_colour :  <color>  =>  (Get Registration Number of all cars with specific Color)`)
 }

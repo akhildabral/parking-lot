@@ -41,10 +41,7 @@ func (cmd *cmdSlotNoForRegNo) Validate(args []string) bool {
 	return false
 }
 
-func (cmd *cmdSlotNoForRegNo) ProcessInput() {
-
-}
-
 func (cmd *cmdSlotNoForRegNo) Help() {
-	fmt.Println("You Need SOme help!")
+	fmt.Println(`Help --> 
+slot_number_for_registration_number :  <registration number>  =>  (GEt Slot number of a specific Car by Registration Number)`)
 }
