@@ -1,6 +1,7 @@
 # Parking Lot
 
 This project is a implementation of an Automated Parking Lot.
+Program accepts File input or can be accessed via Command Line Interface(CLI)
 
 Language : GoLang
 
@@ -21,6 +22,9 @@ https://blog.gojekengineering.com/the-many-flavours-of-dependency-injection-in-g
 
 ## Architecture
 
+
+
+
 ## Build
 
 Place the folder 'parking_lot' in GOPATH src/ folder
@@ -34,7 +38,7 @@ parking_lot$ ./bin/setup
 
 Navigate to 'parking_lot' directory
 
-### Laungh Intractive Shell
+### Launch CLI
 ``` 
 parking_lot$ ./bin/parking_lot
 ```
