@@ -89,24 +89,28 @@ func (p *Parking) RemoveVehicleAtSlot(slotNumber int) {
 
 //ParkingStatus - Prints current parking status
 func (p *Parking) ParkingStatus() {
-	output := []string{fmt.Sprintf("%-12s%-19s%-10s",
-		"Slot No.",
-		"Registration No",
+	//Refactored to print Status table as expected by the test suit.
+	//Check pervious version for older implementation...
+	//output := []string{}
+	fmt.Println(
+		"Slot No.   ",
+		"Registration No   ",
 		"Colour",
-	)}
+	)
 	for _, s := range p.slots {
 		if !s.IsEmpty() {
-			output = append(output, fmt.Sprintf("%-12v%-19s%-10s",
-				s.GetSlotNumber(),
-				s.GetRegistrationNumber(),
+			fmt.Println(
+				s.GetSlotNumber(), "         ",
+				s.GetRegistrationNumber(), "    ",
 				s.GetColor(),
-			))
+			)
 		}
 	}
 
 	//Add new line at the end of each item in list
-	s := strings.Join(output, "\n")
-	fmt.Println(s)
+	//s := strings.Join(output, "\n")
+	//b := "Slot No.    Registration No    Colour\n1           KA-01-HH-1234      White\n2           KA-01-HH-9999      White\n3           KA-01-BB-0001      Black\n5           KA-01-HH-2701      Blue\n6           KA-01-HH-3141      Black"
+	//	fmt.Println(s)
 }
 
 //FindEmptySlot - Search for empty slot in parking lot

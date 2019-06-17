@@ -19,5 +19,5 @@ var Messages = map[string]string{
 	ParkingSlotAllocated:     "Allocated slot number: %v",
 	ParkingInvalidSlotNumber: "Invalid Slot Number",
 	ParkingSlotNumberIsFree:  "Slot number %v is free",
-	NotFound:                 "Not Found",
+	NotFound:                 "Not found",
 }
